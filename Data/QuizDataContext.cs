@@ -11,7 +11,7 @@ public class QuizDataContext : DbContext
     public DbSet<Answer> Answers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
-        optionsBuilder.UseSqlServer("Server=localhost,1433;Database=Blog;User ID=sa;Password=Sh@rk250535;Trusted_Connection=False; TrustServerCertificate=True;");
+        optionsBuilder.UseSqlServer("Server=localhost,1433;Database=Quiz;User ID=sa;Password=Sh@rk250535;Trusted_Connection=False; TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

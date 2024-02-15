@@ -36,7 +36,7 @@ public class MenuQuestionScreen
             //    MainMenu.Start();
             //    break;
             default:
-                System.Console.WriteLine("Opção digitada inválida, pressione qualquer tecla para retornar ao menu.");
+                Console.WriteLine("Opção digitada inválida, pressione qualquer tecla para retornar ao menu.");
                 Console.ReadKey();
                 Load();
                 break;

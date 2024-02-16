@@ -6,16 +6,16 @@ internal class CreateQuestionScreen
 {
     public void Create()
     {
-        System.Console.WriteLine("-----CRIAR QUESTÃO-----");
-        System.Console.WriteLine("(1) - Criar questão");
-        System.Console.WriteLine("(0) - Voltar");
+        Console.WriteLine("-----CRIAR QUESTÃO-----");
+        Console.WriteLine("(1) - Criar questão");
+        Console.WriteLine("(0) - Voltar");
         var option = int.Parse(Console.ReadLine());
         if (option == 0)
             MenuQuestionScreen.Load();
         Console.Clear();
         Console.WriteLine("Nova questão");
         Console.WriteLine("-------------");
-        System.Console.WriteLine("Ao criar uma nova questão, será obrigado logo em seguida a colocação das 5 alternativas de respostas.");
+        Console.WriteLine("Ao criar uma nova questão, será obrigado logo em seguida a colocação das 5 alternativas de respostas.");
         Console.WriteLine("A primeia resposta será automaticamente considerada a verdadeira, então cuidado! Mas não se preocupe, no quiz elas terão ordens embaralhadas.");
         ListCategoryScreen.List();
         Console.Write("Categoria da questão: ");

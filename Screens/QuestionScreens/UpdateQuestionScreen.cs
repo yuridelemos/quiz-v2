@@ -4,9 +4,9 @@ internal class UpdateQuestionScreen
 {
     public static void Load()
     {
-        System.Console.WriteLine("-----ATUALIZAR QUESTÃO-----");
-        System.Console.WriteLine("(1) - Atualizar questão");
-        System.Console.WriteLine("(0) - Voltar");
+        Console.WriteLine("-----ATUALIZAR QUESTÃO-----");
+        Console.WriteLine("(1) - Atualizar questão");
+        Console.WriteLine("(0) - Voltar");
         var option = int.Parse(Console.ReadLine());
         if (option == 0)
             MenuQuestionScreen.Load();

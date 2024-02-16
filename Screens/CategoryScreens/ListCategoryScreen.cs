@@ -18,7 +18,18 @@ public class ListCategoryScreen
             .ToList()
             .ForEach(Console.WriteLine);
         Console.WriteLine();
-        System.Console.WriteLine("Pressione qualquer tecla para retornar ao menu.");
+        Console.WriteLine("Pressione qualquer tecla para retornar ao menu.");
         Console.ReadKey();
+    }
+
+    public static void ListUpdateScreen()
+    {
+        using var context = new QuizDataContext();
+        var categories = context.Categories
+            .AsNoTracking()
+            .ToList();
+        categories.Select((category) => $"{category.Id} - {category.Name}")
+            .ToList()
+            .ForEach(Console.WriteLine);
     }
 }

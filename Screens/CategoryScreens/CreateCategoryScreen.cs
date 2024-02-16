@@ -33,7 +33,9 @@ public class CreateCategoryScreen
             });
             context.SaveChanges();
             Console.WriteLine("Categoria cadastrada com sucesso!");
-            Create();
+            Console.WriteLine("Pressione qualquer tecla para retornar ao menu.");
+            Console.ReadKey();
+            MenuCategoryScreen.Load();
         }
         catch (Exception ex)
         {

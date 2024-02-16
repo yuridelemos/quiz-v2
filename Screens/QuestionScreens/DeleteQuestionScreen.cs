@@ -4,11 +4,11 @@ public class DeleteQuestionScreen
 {
     public static void Load()
     {
-        System.Console.WriteLine("-----DELETAR QUESTÃO-----");
-        System.Console.WriteLine("(1) - Deletar questão");
-        System.Console.WriteLine("(0) - Voltar");
+        Console.WriteLine("-----DELETAR QUESTÃO-----");
+        Console.WriteLine("(1) - Deletar questão");
+        Console.WriteLine("(0) - Voltar");
         var option = int.Parse(Console.ReadLine());
-        System.Console.WriteLine("OBS: Ao deletar uma questão, todas as respostas presentes nela também serão deletadas.");
+        Console.WriteLine("OBS: Ao deletar uma questão, todas as respostas presentes nela também serão deletadas.");
         if (option == 0)
             MenuQuestionScreen.Load();
         Console.Clear();
@@ -16,15 +16,15 @@ public class DeleteQuestionScreen
         Console.WriteLine("-------------");
 
 
-        System.Console.WriteLine();
+        Console.WriteLine();
         Console.Write("ID: ");
         var id = Console.ReadLine();
 
 
         //    try
         //    {
-        //        System.Console.WriteLine($"Você tem certeza que deseja deletar essa questão?");
-        //        System.Console.WriteLine("'S' para SIM e 'N' para NÃO");
+        //        Console.WriteLine($"Você tem certeza que deseja deletar essa questão?");
+        //        Console.WriteLine("'S' para SIM e 'N' para NÃO");
         //var option = Console.ReadLine();
         //if (option.ToUpper() == "S")
         //{

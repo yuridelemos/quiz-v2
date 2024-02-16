@@ -6,9 +6,9 @@ internal class UpdateAnswerScreen
 {
     public static void Load()
     {
-        System.Console.WriteLine("-----ATUALIZAR RESPOSTA-----");
-        System.Console.WriteLine("(1) - Atualizar resposta");
-        System.Console.WriteLine("(0) - Voltar");
+        Console.WriteLine("-----ATUALIZAR RESPOSTA-----");
+        Console.WriteLine("(1) - Atualizar resposta");
+        Console.WriteLine("(0) - Voltar");
         var option = int.Parse(Console.ReadLine());
         if (option == 0)
             MenuAnswerScreen.Load();
@@ -16,13 +16,13 @@ internal class UpdateAnswerScreen
         Console.WriteLine("Atualizar resposta");
         Console.WriteLine("-------------");
 
-        System.Console.WriteLine();
+        Console.WriteLine();
         var questionId = ListAnswerScreen.List();
 
         Console.Write("Selecione a resposta: ");
         var answerOrder = Console.ReadLine();
 
-        System.Console.WriteLine("Escreva a nova resposta:");
+        Console.WriteLine("Escreva a nova resposta:");
         var newBody = Console.ReadLine();
 
 
@@ -42,9 +42,9 @@ internal class UpdateAnswerScreen
         {
             //if (CheckCorrectAnswer.CheckAnswer(answer.QuestionId) == answer.AnswerOrder)
             {
-                System.Console.WriteLine("Aviso!: Você está alterando a resposta correta!");
-                System.Console.WriteLine("Deseja continuar?");
-                System.Console.WriteLine("'S' para SIM e 'N' para NÃO");
+                Console.WriteLine("Aviso!: Você está alterando a resposta correta!");
+                Console.WriteLine("Deseja continuar?");
+                Console.WriteLine("'S' para SIM e 'N' para NÃO");
                 var option = Console.ReadLine();
                 if (option.ToUpper() == "N")
                     Load();

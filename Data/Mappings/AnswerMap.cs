@@ -35,6 +35,6 @@ public class AnswerMap : IEntityTypeConfiguration<Answer>
         builder.HasOne(X => X.Question)
             .WithMany(x => x.Answers)
             .HasConstraintName("FK_Answer_Question")
-            .OnDelete(DeleteBehavior.ClientCascade);
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

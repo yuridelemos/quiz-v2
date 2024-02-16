@@ -11,7 +11,7 @@ internal class CreateAnswerScreen
         var answerOrder = count;
         Console.WriteLine("Digite a resposta");
         var body = Console.ReadLine();
-        System.Console.WriteLine("Essa resposta é a correta? \"S\" Sim e \"N\" Não");
+        Console.WriteLine("Essa resposta é a correta? \"S\" Sim e \"N\" Não");
         var option = Console.ReadLine().ToUpper();
         var rightAnswer = false;
         if (option == "S" || option == "SIM")
@@ -31,7 +31,7 @@ internal class CreateAnswerScreen
         {
             //var repository = new AnswerRepository();
             //repository.Insert(answer);
-            System.Console.WriteLine("Resposta salva com sucesso!");
+            Console.WriteLine("Resposta salva com sucesso!");
         }
         catch (Exception ex)
         {

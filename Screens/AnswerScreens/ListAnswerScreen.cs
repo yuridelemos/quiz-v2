@@ -4,7 +4,7 @@ internal class ListAnswerScreen
 {
     public static int List()
     {
-        System.Console.Write("Selecione a questão: ");
+        Console.Write("Selecione a questão: ");
         var questionId = int.Parse(Console.ReadLine());
 
         //var answers = Database.Connection.GetAll<Answer>(null, commandTimeout: 120)

@@ -1,15 +1,24 @@
-﻿namespace quiz_v2.Screens.QuestionScreens;
+﻿using quiz_v2.Data;
 
-internal class ListQuestionScreen
+namespace quiz_v2.Screens.QuestionScreens;
+
+public class ListQuestionScreen
 {
-    public static void Load()
+    public static void List(int id)
     {
         Console.Clear();
         Console.WriteLine("Gestão de questões");
         Console.WriteLine("--------------");
+        using var context = new QuizDataContext();
+        var questions = context.Questions
+            .Where(x => x.Category.Id == id)
+            .ToList();
+        questions.Select((question) => $"{question.Id} - {question.Body}")
+            .ToList()
+            .ForEach(Console.WriteLine);
         Console.WriteLine();
-        System.Console.WriteLine("Pressione qualquer tecla para retornar ao menu.");
+        Console.WriteLine("Pressione qualquer tecla para retornar ao menu.");
         Console.ReadKey();
-        MenuQuestionScreen.Load();
+        //MenuQuestionScreen.Load();
     }
 }

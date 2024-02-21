@@ -33,7 +33,7 @@ internal class MenuCategoryScreen
                 DeleteCategoryScreen.Load();
                 break;
             case 0:
-                MainMenu.Start();
+                MainMenu.Load();
                 break;
             default:
                 Console.WriteLine("Opção digitada inválida, pressione qualquer tecla para retornar ao menu.");

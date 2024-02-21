@@ -1,20 +1,31 @@
-﻿namespace quiz_v2.Screens.AnswerScreens;
+﻿using Microsoft.EntityFrameworkCore;
+using quiz_v2.Data;
+using quiz_v2.Screens.QuestionScreens;
+
+namespace quiz_v2.Screens.AnswerScreens;
 
 internal class ListAnswerScreen
 {
-    public static int List()
+    public static void Load()
     {
-        Console.Write("Selecione a questão: ");
-        var questionId = int.Parse(Console.ReadLine());
+        Console.Clear();
+        Console.WriteLine("Gestão de questões");
+        Console.WriteLine("--------------");
+        ListForEdit();
+        Console.WriteLine();
+        Console.WriteLine("Pressione qualquer tecla para retornar ao menu.");
+        Console.ReadKey();
+        MenuQuestionScreen.Load();
+    }
 
-        //var answers = Database.Connection.GetAll<Answer>(null, commandTimeout: 120)
-        //    .Where(x => (x.Id >> 16) == questionId)
-        //    .OrderBy(x => x.AnswerOrder);
-
-        //foreach (var item in answers)
-        //{
-        //    Console.WriteLine($"{item.AnswerOrder} - {item.Body}");
-        //}
-        return questionId;
+    internal static void ListForEdit()
+    {
+        using var context = new QuizDataContext();
+        var answers = context.Answers
+            .AsNoTracking()
+            .ToList();
+        answers.Select((answer) => $"{answer.Id} - {answer.Body}")
+            .ToList()
+            .ForEach(Console.WriteLine);
     }
 }

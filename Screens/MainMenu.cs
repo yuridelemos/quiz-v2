@@ -6,7 +6,7 @@ namespace quiz_v2.Screens;
 
 internal class MainMenu
 {
-    internal static void Start()
+    internal static void Load()
     {
         Console.Clear();
         Console.WriteLine("-------------Bem-vindo ao Quiz universiotário-------------");
@@ -29,7 +29,7 @@ internal class MainMenu
                 RulesScreen.ShowRules();
                 Console.WriteLine("Pressione qualquer tecla para retornar ao menu principal...");
                 Console.ReadKey();
-                Start();
+                Load();
                 break;
             case 3:
                 MenuCategoryScreen.Load();
@@ -40,7 +40,7 @@ internal class MainMenu
             case 5:
                 MenuAnswerScreen.Load();
                 break;
-            default: Start(); break;
+            default: Load(); break;
         }
     }
 }

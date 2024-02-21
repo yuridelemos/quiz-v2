@@ -1,15 +1,20 @@
-﻿using quiz_v2.Models;
+﻿using quiz_v2.Data;
+using quiz_v2.Models;
 
 namespace quiz_v2.Screens.AnswerScreens;
 
 internal class DeleteAnswerScreen
 {
-    public static void DeleteAll(Answer answer)
+    internal static void DeleteAllAnswers(Question question, QuizDataContext context)
     {
         try
         {
-            //var repository = new AnswerRepository();
-            //repository.Delete(answer);
+            var answers = context.Answers
+                .Where(x => x.Question.Id == question.Id)
+                .ToList();
+            foreach (var answer in answers)
+                context.Answers.Remove(answer);
+            context.SaveChanges();
         }
         catch (Exception ex)
         {

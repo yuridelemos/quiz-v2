@@ -3,9 +3,9 @@ using quiz_v2.Data;
 
 namespace quiz_v2.Screens.CategoryScreens;
 
-public class ListCategoryScreen
+internal class ListCategoryScreen
 {
-    public static void List()
+    internal static void Load()
     {
         Console.Clear();
         Console.WriteLine("Lista de categorias");
@@ -18,7 +18,18 @@ public class ListCategoryScreen
             .ToList()
             .ForEach(Console.WriteLine);
         Console.WriteLine();
-        System.Console.WriteLine("Pressione qualquer tecla para retornar ao menu.");
+        Console.WriteLine("Pressione qualquer tecla para retornar ao menu.");
         Console.ReadKey();
+    }
+
+    internal static void ListForEdit()
+    {
+        using var context = new QuizDataContext();
+        var categories = context.Categories
+            .AsNoTracking()
+            .ToList();
+        categories.Select((category) => $"{category.Id} - {category.Name}")
+            .ToList()
+            .ForEach(Console.WriteLine);
     }
 }

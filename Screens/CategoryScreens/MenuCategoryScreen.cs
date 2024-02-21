@@ -1,37 +1,36 @@
-﻿namespace quiz_v2.Screens.QuestionScreens;
+﻿namespace quiz_v2.Screens.CategoryScreens;
 
-public class MenuQuestionScreen
+internal class MenuCategoryScreen
 {
-    public static void Load()
+    internal static void Load()
     {
         Console.Clear();
-        Console.WriteLine("Gestão de questões");
+        Console.WriteLine("Gestão de cartegorias");
         Console.WriteLine("--------------");
         Console.WriteLine("O que deseja fazer?");
         Console.WriteLine();
-        Console.WriteLine("(1) - Listar questões");
-        Console.WriteLine("(2) - Cadastrar questões");
-        Console.WriteLine("(3) - Atualizar questões");
-        Console.WriteLine("(4) - Excluir questões");
+        Console.WriteLine("(1) - Listar cartegorias");
+        Console.WriteLine("(2) - Cadastrar cartegorias");
+        Console.WriteLine("(3) - Atualizar cartegorias");
+        Console.WriteLine("(4) - Excluir cartegorias");
         Console.WriteLine("(0) - Voltar");
         Console.Write("----------------: ");
-
 
         var option = short.Parse(Console.ReadLine());
 
         switch (option)
         {
             case 1:
-                ListQuestionScreen.ListForEdit();
+                ListCategoryScreen.Load();
                 break;
             case 2:
-                CreateQuestionScreen.Load();
+                CreateCategoryScreen.Load();
                 break;
             case 3:
-                UpdateQuestionScreen.Load();
+                UpdateCategoryScreen.Load();
                 break;
             case 4:
-                DeleteQuestionScreen.Load();
+                DeleteCategoryScreen.Load();
                 break;
             case 0:
                 MainMenu.Load();

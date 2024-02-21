@@ -25,6 +25,6 @@ public class QuestionMap : IEntityTypeConfiguration<Question>
         builder.HasOne(x => x.Category)
             .WithMany(x => x.Questions)
             .HasConstraintName("FK_Question_Category")
-            .OnDelete(DeleteBehavior.ClientCascade);
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

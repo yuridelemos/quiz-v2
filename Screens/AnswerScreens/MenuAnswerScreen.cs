@@ -5,14 +5,12 @@ public class MenuAnswerScreen
     public static void Load()
     {
         Console.Clear();
-        Console.WriteLine("Gestão de questões");
+        Console.WriteLine("Gestão de respostas");
         Console.WriteLine("--------------");
         Console.WriteLine("O que deseja fazer?");
         Console.WriteLine();
-        Console.WriteLine("(1) - Listar questões");
-        Console.WriteLine("(2) - Cadastrar questões");
-        Console.WriteLine("(3) - Atualizar questões");
-        Console.WriteLine("(4) - Excluir questões");
+        Console.WriteLine("(1) - Listar respostas");
+        Console.WriteLine("(2) - Atualizar respostas");
         Console.WriteLine("(0) - Voltar");
         Console.WriteLine();
 
@@ -20,21 +18,15 @@ public class MenuAnswerScreen
 
         switch (option)
         {
-            //case 1:
-            //    ListAnswerScreen.Load();
-            //    break;
-            //case 2:
-            //    CreateAnswerScreen.Load();
-            //    break;
-            //case 3:
-            //    UpdateAnswerScreen.Load();
-            //    break;
-            //case 4:
-            //    DeleteAnswerScreen.Load();
-            //    break;
-            //case 0:
-            //    MainMenu.Start();
-            //    break;
+            case 1:
+                ListAnswerScreen.Load();
+                break;
+            case 2:
+                UpdateAnswerScreen.Load();
+                break;
+            case 0:
+                MainMenu.Load();
+                break;
             default:
                 Console.WriteLine("Opção digitada inválida, pressione qualquer tecla para retornar ao menu.");
                 Console.ReadKey();

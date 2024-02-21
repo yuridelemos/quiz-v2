@@ -1,37 +1,35 @@
-﻿using quiz_v2.Models;
+﻿using quiz_v2.Data;
+using quiz_v2.Models;
 
 namespace quiz_v2.Screens.AnswerScreens;
 
 internal class CreateAnswerScreen
 {
-    public static void Load(Question question, int count)
+    internal static void Load(Question question, QuizDataContext context, int answerOrder)
     {
         Console.WriteLine("Nova resposta");
         Console.WriteLine("-------------");
-        var answerOrder = count;
-        Console.WriteLine("Digite a resposta");
+        Console.Write("Digite a resposta: ");
         var body = Console.ReadLine();
-        System.Console.WriteLine("Essa resposta é a correta? \"S\" Sim e \"N\" Não");
-        var option = Console.ReadLine().ToUpper();
         var rightAnswer = false;
-        if (option == "S" || option == "SIM")
+        if (answerOrder == 1)
             rightAnswer = true;
-        //Create(new Answer
-        //{
-        //    QuestionId = question.Id,
-        //    AnswerOrder = answerOrder,
-        //    Body = body,
-        //    RightAnswer = rightAnswer
-        //});
+        Create(new Answer
+        {
+            Question = question,
+            AnswerOrder = answerOrder,
+            Body = body,
+            RightAnswer = rightAnswer
+        }, context);
     }
 
-    public static void Create(Answer answer)
+    private static void Create(Answer answer, QuizDataContext context)
     {
         try
         {
-            //var repository = new AnswerRepository();
-            //repository.Insert(answer);
-            System.Console.WriteLine("Resposta salva com sucesso!");
+            context.Answers.Add(answer);
+            Console.Clear();
+            Console.WriteLine($"Resposta {answer.AnswerOrder} salva com sucesso!\n");
         }
         catch (Exception ex)
         {

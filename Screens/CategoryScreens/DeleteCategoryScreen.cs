@@ -1,21 +1,34 @@
 ﻿using quiz_v2.Data;
-using quiz_v2.Models;
 
 namespace quiz_v2.Screens.CategoryScreens;
 
 internal class DeleteCategoryScreen
 {
-    private static void Delete()
+    internal static void Load()
     {
-
+        Console.WriteLine("-----DELETAR CATEGORIA-----");
+        Console.WriteLine("(1) - Deletar categoria");
+        Console.WriteLine("(0) - Voltar");
+        var option = int.Parse(Console.ReadLine());
+        if (option == 0)
+            MenuCategoryScreen.Load();
+        // Implementar uma opção de 0, 1 ou outra escolha para substituir esse IF simples
+        Console.Clear();
+        Console.WriteLine("Deletar categoria");
+        Console.WriteLine("-------------");
+        ListCategoryScreen.ListForEdit();
+        Console.WriteLine("-------------");
+        Console.Write("ID: ");
+        var id = int.Parse(Console.ReadLine());
+        Delete(id);
     }
 
-    internal static void DeleteAllQuestions(Category category, QuizDataContext context)
+
+    private static void Delete(int id)
     {
-        var questions = context.Questions
-                        .Where(x => x.Category.Id == category.Id)
-                        .ToList();
-        foreach (var question in questions)
-            context.Questions.Remove(question);
+        using var context = new QuizDataContext();
+        var category = context.Categories
+            .FirstOrDefault(x => x.Id == id);
+        context.Categories.Remove(category);
     }
 }

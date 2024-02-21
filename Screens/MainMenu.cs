@@ -1,9 +1,14 @@
-﻿namespace quiz_v2.Screens;
+﻿using quiz_v2.Screens.AnswerScreens;
+using quiz_v2.Screens.CategoryScreens;
+using quiz_v2.Screens.QuestionScreens;
 
-public class MainMenu
+namespace quiz_v2.Screens;
+
+internal class MainMenu
 {
-    public static void Start()
+    internal static void Start()
     {
+        Console.Clear();
         Console.WriteLine("-------------Bem-vindo ao Quiz universiotário-------------");
         Console.WriteLine("----------------------Menu Principal----------------------\n");
         Console.WriteLine("(1) - Iniciar Jogo");
@@ -26,15 +31,15 @@ public class MainMenu
                 Console.ReadKey();
                 Start();
                 break;
-            //case 3:
-            //    MenuCategoryScreen.Load();
-            //    break;
-            //case 4:
-            //    MenuQuestionScreen.Load();
-            //    break;
-            //case 5:
-            //    MenuAnswerScreen.Load();
-            //    break;
+            case 3:
+                MenuCategoryScreen.Load();
+                break;
+            case 4:
+                MenuQuestionScreen.Load();
+                break;
+            case 5:
+                MenuAnswerScreen.Load();
+                break;
             default: Start(); break;
         }
     }

@@ -3,9 +3,9 @@ using quiz_v2.Data;
 
 namespace quiz_v2.Screens.CategoryScreens;
 
-public class ListCategoryScreen
+internal class ListCategoryScreen
 {
-    public static void List()
+    internal static void Load()
     {
         Console.Clear();
         Console.WriteLine("Lista de categorias");
@@ -22,7 +22,7 @@ public class ListCategoryScreen
         Console.ReadKey();
     }
 
-    public static void ListUpdateScreen()
+    internal static void ListForEdit()
     {
         using var context = new QuizDataContext();
         var categories = context.Categories

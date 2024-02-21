@@ -3,9 +3,9 @@ using quiz_v2.Data;
 
 namespace quiz_v2.Screens;
 
-public class StartGame
+internal class StartGame
 {
-    public static void Load()
+    internal static void Load()
     {
         Console.WriteLine("-------------Iniciando o jogo-------------");
         //Console.WriteLine("Escolha a quantidade de questões para iniciar seu quiz");

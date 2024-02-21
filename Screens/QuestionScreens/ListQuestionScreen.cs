@@ -1,24 +1,45 @@
-﻿using quiz_v2.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using quiz_v2.Data;
 
 namespace quiz_v2.Screens.QuestionScreens;
 
-public class ListQuestionScreen
+internal class ListQuestionScreen
 {
-    public static void List(int id)
+    internal static void Load()
     {
         Console.Clear();
         Console.WriteLine("Gestão de questões");
         Console.WriteLine("--------------");
+        ListForEdit();
+        Console.WriteLine();
+        Console.WriteLine("Pressione qualquer tecla para retornar ao menu.");
+        Console.ReadKey();
+        MenuQuestionScreen.Load();
+    }
+
+    internal static bool List(short id)
+    {
         using var context = new QuizDataContext();
         var questions = context.Questions
             .Where(x => x.Category.Id == id)
+            .AsNoTracking()
             .ToList();
         questions.Select((question) => $"{question.Id} - {question.Body}")
             .ToList()
             .ForEach(Console.WriteLine);
-        Console.WriteLine();
-        Console.WriteLine("Pressione qualquer tecla para retornar ao menu.");
-        Console.ReadKey();
-        //MenuQuestionScreen.Load();
+        if (questions.Any())
+            return true;
+        return false;
+    }
+
+    internal static void ListForEdit()
+    {
+        using var context = new QuizDataContext();
+        var questions = context.Questions
+            .AsNoTracking()
+            .ToList();
+        questions.Select((question) => $"{question.Id} - {question.Body}")
+            .ToList()
+            .ForEach(Console.WriteLine);
     }
 }

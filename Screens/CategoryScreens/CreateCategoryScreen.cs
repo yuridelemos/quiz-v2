@@ -4,11 +4,10 @@ using quiz_v2.Models;
 
 namespace quiz_v2.Screens.CategoryScreens;
 
-public class CreateCategoryScreen
+internal class CreateCategoryScreen
 {
-    public static void Create()
+    internal static void Load()
     {
-        using var context = new QuizDataContext();
         Console.WriteLine("-----CRIAÇÃO DE CATEGORIA-----");
         Console.WriteLine("(1) - Criar categoria");
         Console.WriteLine("(0) - Voltar");
@@ -20,17 +19,20 @@ public class CreateCategoryScreen
         Console.WriteLine("-------------");
         Console.Write("Nome: ");
         var matter = Console.ReadLine();
-
+        Create(matter);
+    }
+    private static void Create(string matter)
+    {
+        using var context = new QuizDataContext();
         CheckDuplicity(context, matter);
-
         try
         {
             context.Categories
-            .Add(new Category
-            {
-                Name = matter,
-                Slug = matter.ToLower()
-            });
+                .Add(new Category
+                {
+                    Name = matter,
+                    Slug = matter.ToLower()
+                });
             context.SaveChanges();
             Console.WriteLine("Categoria cadastrada com sucesso!");
             Console.WriteLine("Pressione qualquer tecla para retornar ao menu.");
@@ -43,7 +45,6 @@ public class CreateCategoryScreen
             Console.WriteLine(ex.Message);
         }
     }
-
     private static void CheckDuplicity(QuizDataContext context, string matter)
     {
         var categories = context.Categories
@@ -56,7 +57,7 @@ public class CreateCategoryScreen
                 Console.WriteLine("Não foi possível efetuar o cadastrar, matéria já cadastrada.");
                 Console.WriteLine("Presione qualquer tecla para tentar novamente.");
                 Console.ReadKey();
-                Create();
+                Load();
             }
         }
     }

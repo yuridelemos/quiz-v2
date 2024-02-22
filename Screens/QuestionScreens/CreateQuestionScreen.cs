@@ -10,7 +10,7 @@ internal class CreateQuestionScreen
 {
     internal static void Load()
     {
-        Console.WriteLine("-----CRIAR QUESTÃO-----");
+        Console.WriteLine("-----CRIAÇÃO DE QUESTÃO-----");
         Console.WriteLine("(1) - Criar questão");
         Console.WriteLine("(0) - Voltar");
         Console.Write("-------------: ");
@@ -28,15 +28,15 @@ internal class CreateQuestionScreen
     private static void Create()
     {
         var context = new QuizDataContext();
-
-        Console.Write("Categoria da questão: ");
-        var categoryId = short.Parse(Console.ReadLine());
-        var category = context.Categories.FirstOrDefault(x => x.Id == categoryId);
-        Console.Write("Digite a questão: ");
-        var body = Console.ReadLine();
-        CheckDuplicity(context, body);
         try
         {
+            Console.Write("Categoria da questão: ");
+            var categoryId = short.Parse(Console.ReadLine());
+            var category = context.Categories.FirstOrDefault(x => x.Id == categoryId);
+            Console.Write("Digite a questão: ");
+            var body = Console.ReadLine();
+            CheckDuplicity(context, body);
+
             var question = new Question
             {
                 Category = category,
@@ -62,16 +62,16 @@ internal class CreateQuestionScreen
             Console.WriteLine(ex.Message);
         }
     }
-    private static void CheckDuplicity(QuizDataContext context, string matter)
+    private static void CheckDuplicity(QuizDataContext context, string body)
     {
-        var categories = context.Categories
+        var questions = context.Questions
                         .AsNoTracking()
                         .ToList();
-        foreach (var category in categories)
+        foreach (var question in questions)
         {
-            if (category == null || category.Name == matter)
+            if (question == null || question.Body == body)
             {
-                Console.WriteLine("Não foi possível efetuar o cadastrar, matéria já cadastrada.");
+                Console.WriteLine("Não foi possível efetuar o cadastrar, questão já cadastrada.");
                 Console.WriteLine("Presione qualquer tecla para tentar novamente.");
                 Console.ReadKey();
                 Load();

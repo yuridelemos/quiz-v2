@@ -9,26 +9,35 @@ internal class DeleteCategoryScreen
         Console.WriteLine("-----DELETAR CATEGORIA-----");
         Console.WriteLine("(1) - Deletar categoria");
         Console.WriteLine("(0) - Voltar");
-        var option = int.Parse(Console.ReadLine());
+        Console.Write("-------------: ");
+        var option = short.Parse(Console.ReadLine());
+        Console.WriteLine("OBS: Ao deletar uma categoria, todas as questões e respostas presentes nela também serão deletadas.");
         if (option == 0)
             MenuCategoryScreen.Load();
-        // Implementar uma opção de 0, 1 ou outra escolha para substituir esse IF simples
         Console.Clear();
         Console.WriteLine("Deletar categoria");
         Console.WriteLine("-------------");
         ListCategoryScreen.ListForEdit();
         Console.WriteLine("-------------");
         Console.Write("ID: ");
-        var id = int.Parse(Console.ReadLine());
+        var id = short.Parse(Console.ReadLine());
         Delete(id);
     }
 
 
-    private static void Delete(int id)
+    private static void Delete(short id)
     {
-        using var context = new QuizDataContext();
-        var category = context.Categories
-            .FirstOrDefault(x => x.Id == id);
-        context.Categories.Remove(category);
+        try
+        {
+            using var context = new QuizDataContext();
+            var category = context.Categories
+                .FirstOrDefault(x => x.Id == id);
+            context.Categories.Remove(category);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Não foi possível deletar a categoria.");
+            Console.WriteLine(ex.Message);
+        }
     }
 }

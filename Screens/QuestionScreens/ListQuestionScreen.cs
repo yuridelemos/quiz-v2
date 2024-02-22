@@ -19,27 +19,44 @@ internal class ListQuestionScreen
 
     internal static bool List(short id)
     {
-        using var context = new QuizDataContext();
-        var questions = context.Questions
-            .Where(x => x.Category.Id == id)
-            .AsNoTracking()
-            .ToList();
-        questions.Select((question) => $"{question.Id} - {question.Body}")
-            .ToList()
-            .ForEach(Console.WriteLine);
-        if (questions.Any())
-            return true;
+        try
+        {
+            using var context = new QuizDataContext();
+            var questions = context.Questions
+                .Where(x => x.Category.Id == id)
+                .AsNoTracking()
+                .ToList();
+            questions.Select((question) => $"{question.Id} - {question.Body}")
+                .ToList()
+                .ForEach(Console.WriteLine);
+            if (questions.Any())
+                return true;
+            return false;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Não foi possível listar as questões.");
+            Console.WriteLine(ex.Message);
+        }
         return false;
     }
 
     internal static void ListForEdit()
     {
-        using var context = new QuizDataContext();
-        var questions = context.Questions
-            .AsNoTracking()
-            .ToList();
-        questions.Select((question) => $"{question.Id} - {question.Body}")
-            .ToList()
-            .ForEach(Console.WriteLine);
+        try
+        {
+            using var context = new QuizDataContext();
+            var questions = context.Questions
+                .AsNoTracking()
+                .ToList();
+            questions.Select((question) => $"{question.Id} - {question.Body}")
+                .ToList()
+                .ForEach(Console.WriteLine);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Não foi possível listar as questões.");
+            Console.WriteLine(ex.Message);
+        }
     }
 }

@@ -12,6 +12,7 @@ internal class UpdateQuestionScreen
         Console.WriteLine("-----ATUALIZAR QUESTÃO-----");
         Console.WriteLine("(1) - Atualizar questão");
         Console.WriteLine("(0) - Voltar");
+        Console.Write("----------------: ");
         var option = short.Parse(Console.ReadLine());
         if (option == 0)
             MenuQuestionScreen.Load();
@@ -46,6 +47,7 @@ internal class UpdateQuestionScreen
             Console.WriteLine("Você deseja apagar todas as respostas dessa questão?");
             Console.WriteLine("(1) - Sim, desejo apagar todas as respostas.");
             Console.WriteLine("(0) - Não, desejo voltar ao menu.");
+            Console.Write("----------------: ");
             var option = short.Parse(Console.ReadLine());
 
             switch (option)
@@ -66,7 +68,7 @@ internal class UpdateQuestionScreen
         }
         catch (Exception ex)
         {
-            Console.WriteLine("Não foi possível atualizar a categoria");
+            Console.WriteLine("Não foi possível atualizar a categoria.");
             Console.WriteLine(ex.Message);
         }
     }

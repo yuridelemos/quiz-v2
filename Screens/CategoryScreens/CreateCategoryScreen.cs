@@ -11,6 +11,7 @@ internal class CreateCategoryScreen
         Console.WriteLine("-----CRIAÇÃO DE CATEGORIA-----");
         Console.WriteLine("(1) - Criar categoria");
         Console.WriteLine("(0) - Voltar");
+        Console.Write("-------------: ");
         var option = int.Parse(Console.ReadLine());
         if (option == 0)
             MenuCategoryScreen.Load();

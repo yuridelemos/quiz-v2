@@ -18,7 +18,7 @@ internal class DeleteAnswerScreen
         }
         catch (Exception ex)
         {
-            Console.WriteLine("Não foi possível deletar as respostas");
+            Console.WriteLine("Não foi possível deletar as respostas.");
             Console.WriteLine(ex.Message);
         }
     }

@@ -10,7 +10,7 @@ internal class MainMenu
     {
         Console.Clear();
         Console.WriteLine("-------------Bem-vindo ao Quiz universiotário-------------");
-        Console.WriteLine("----------------------Menu Principal----------------------\n");
+        Console.WriteLine("----------------------Menu Principal----------------------");
         Console.WriteLine("(1) - Iniciar Jogo");
         Console.WriteLine("(2) - Regras");
         Console.WriteLine("(3) - Gestão de Categorias");

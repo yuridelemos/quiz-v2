@@ -20,12 +20,20 @@ internal class ListAnswerScreen
 
     internal static void ListForEdit()
     {
-        using var context = new QuizDataContext();
-        var answers = context.Answers
-            .AsNoTracking()
-            .ToList();
-        answers.Select((answer) => $"{answer.Id} - {answer.Body}")
-            .ToList()
-            .ForEach(Console.WriteLine);
+        try
+        {
+            using var context = new QuizDataContext();
+            var answers = context.Answers
+                .AsNoTracking()
+                .ToList();
+            answers.Select((answer) => $"{answer.Id} - {answer.Body}")
+                .ToList()
+                .ForEach(Console.WriteLine);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Não foi possível listar as respostas.");
+            Console.WriteLine(ex.Message);
+        }
     }
 }

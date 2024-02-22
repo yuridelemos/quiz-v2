@@ -82,24 +82,32 @@ internal class DeleteQuestionScreen
             }
             else
             {
-                Console.WriteLine("Opção inválida. Por favor tente novamente");
+                Console.WriteLine("Opção inválida. Por favor tente novamente.");
                 Delete(id);
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine("Não foi possível deletar questão");
+            Console.WriteLine("Não foi possível deletar a questão.");
             Console.WriteLine(ex.Message);
         }
 
     }
     internal static void DeleteAllQuestions(Category category, QuizDataContext context)
     {
-        var questions = context.Questions
-                        .Where(x => x.Category.Id == category.Id)
-                        .ToList();
-        foreach (var question in questions)
-            context.Questions.Remove(question);
-        context.SaveChanges();
+        try
+        {
+            var questions = context.Questions
+                            .Where(x => x.Category.Id == category.Id)
+                            .ToList();
+            foreach (var question in questions)
+                context.Questions.Remove(question);
+            context.SaveChanges();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Não foi possível deletar as questões.");
+            Console.WriteLine(ex.Message);
+        }
     }
 }

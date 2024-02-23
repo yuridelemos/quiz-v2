@@ -4,7 +4,7 @@ namespace quiz_v2.Screens.AnswerScreens;
 
 internal class UpdateAnswerScreen
 {
-    internal static void Load()
+    internal static void Load(QuizDataContext context)
     {
         Console.WriteLine("-----ATUALIZAR RESPOSTA-----");
         Console.WriteLine("(1) - Atualizar resposta");
@@ -12,25 +12,24 @@ internal class UpdateAnswerScreen
         Console.Write("----------------: ");
         var option = short.Parse(Console.ReadLine());
         if (option == 0)
-            MenuAnswerScreen.Load();
+            MenuAnswerScreen.Load(context);
         Console.Clear();
         Console.WriteLine("Atualizar resposta");
         Console.WriteLine("-------------");
-        ListAnswerScreen.ListForEdit();
+        ListAnswerScreen.ListForEdit(context);
         Console.WriteLine();
         Console.Write("ID: ");
         var id = short.Parse(Console.ReadLine());
         Console.Write("Escreva a nova resposta: ");
         var body = Console.ReadLine();
 
-        Update(id, body);
+        Update(id, body, context);
     }
 
-    private static void Update(short id, string body)
+    private static void Update(short id, string body, QuizDataContext context)
     {
         try
         {
-            using var context = new QuizDataContext();
             var answer = context.Answers
                 .FirstOrDefault(x => x.Id == id);
 
@@ -43,7 +42,7 @@ internal class UpdateAnswerScreen
                 Console.Write("----------------: ");
                 var option = Console.ReadLine();
                 if (option.ToUpper() == "N")
-                    Load();
+                    Load(context);
             }
             context.Answers.Update(answer);
             context.SaveChanges();
@@ -54,6 +53,10 @@ internal class UpdateAnswerScreen
             Console.WriteLine("Não foi possível atualizar a resposta.");
             Console.WriteLine(ex.Message);
         }
+        Console.WriteLine();
+        Console.WriteLine("Pressione qualquer tecla para retornar ao menu.");
+        Console.ReadKey();
+        MenuAnswerScreen.Load(context);
     }
 }
 

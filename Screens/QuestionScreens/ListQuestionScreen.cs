@@ -5,23 +5,22 @@ namespace quiz_v2.Screens.QuestionScreens;
 
 internal class ListQuestionScreen
 {
-    internal static void Load()
+    internal static void Load(QuizDataContext context)
     {
         Console.Clear();
         Console.WriteLine("Gestão de questões");
         Console.WriteLine("--------------");
-        ListForEdit();
+        ListForEdit(context);
         Console.WriteLine();
         Console.WriteLine("Pressione qualquer tecla para retornar ao menu.");
         Console.ReadKey();
-        MenuQuestionScreen.Load();
+        MenuQuestionScreen.Load(context);
     }
 
-    internal static bool List(short id)
+    internal static bool List(short id, QuizDataContext context)
     {
         try
         {
-            using var context = new QuizDataContext();
             var questions = context.Questions
                 .Where(x => x.Category.Id == id)
                 .AsNoTracking()
@@ -41,11 +40,10 @@ internal class ListQuestionScreen
         return false;
     }
 
-    internal static void ListForEdit()
+    internal static void ListForEdit(QuizDataContext context)
     {
         try
         {
-            using var context = new QuizDataContext();
             var questions = context.Questions
                 .AsNoTracking()
                 .ToList();

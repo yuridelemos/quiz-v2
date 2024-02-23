@@ -8,7 +8,7 @@ namespace quiz_v2.Screens.QuestionScreens;
 
 internal class CreateQuestionScreen
 {
-    internal static void Load()
+    internal static void Load(QuizDataContext context)
     {
         Console.WriteLine("-----CRIAÇÃO DE QUESTÃO-----");
         Console.WriteLine("(1) - Criar questão");
@@ -16,18 +16,17 @@ internal class CreateQuestionScreen
         Console.Write("-------------: ");
         var option = int.Parse(Console.ReadLine());
         if (option == 0)
-            MenuQuestionScreen.Load();
+            MenuQuestionScreen.Load(context);
         Console.Clear();
         Console.WriteLine("Nova questão");
         Console.WriteLine("-------------");
         Console.WriteLine("Ao criar uma nova questão, será obrigado logo em seguida a colocação das 5 alternativas de respostas.");
         Console.WriteLine("A primeia resposta será automaticamente considerada a verdadeira, então cuidado! Mas não se preocupe, no quiz elas terão ordens embaralhadas.");
-        ListCategoryScreen.Load();
-        Create();
+        ListCategoryScreen.Load(context);
+        Create(context);
     }
-    private static void Create()
+    private static void Create(QuizDataContext context)
     {
-        var context = new QuizDataContext();
         try
         {
             Console.Write("Categoria da questão: ");
@@ -54,7 +53,7 @@ internal class CreateQuestionScreen
             Console.WriteLine("Questão cadastrada com sucesso!");
             Console.WriteLine("Pressione qualquer tecla para retornar ao menu.");
             Console.ReadKey();
-            MenuQuestionScreen.Load();
+            MenuQuestionScreen.Load(context);
         }
         catch (Exception ex)
         {
@@ -74,7 +73,7 @@ internal class CreateQuestionScreen
                 Console.WriteLine("Não foi possível efetuar o cadastrar, questão já cadastrada.");
                 Console.WriteLine("Presione qualquer tecla para tentar novamente.");
                 Console.ReadKey();
-                Load();
+                Load(context);
             }
         }
     }

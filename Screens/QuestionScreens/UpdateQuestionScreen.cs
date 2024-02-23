@@ -7,7 +7,7 @@ namespace quiz_v2.Screens.QuestionScreens;
 
 internal class UpdateQuestionScreen
 {
-    public static void Load()
+    public static void Load(QuizDataContext context)
     {
         Console.WriteLine("-----ATUALIZAR QUESTÃO-----");
         Console.WriteLine("(1) - Atualizar questão");
@@ -15,22 +15,21 @@ internal class UpdateQuestionScreen
         Console.Write("----------------: ");
         var option = short.Parse(Console.ReadLine());
         if (option == 0)
-            MenuQuestionScreen.Load();
+            MenuQuestionScreen.Load(context);
         Console.Clear();
         Console.WriteLine("Atualizar questão");
         Console.WriteLine("-------------");
-        ListQuestionScreen.ListForEdit();
+        ListQuestionScreen.ListForEdit(context);
         Console.Write("ID: ");
         var id = short.Parse(Console.ReadLine());
         Console.Write("Escreva a nova questão: ");
         var body = Console.ReadLine();
 
-        Update(id, body);
+        Update(id, body, context);
     }
 
-    private static void Update(short id, string body)
+    private static void Update(short id, string body, QuizDataContext context)
     {
-        using var context = new QuizDataContext();
         try
         {
             var question = context
@@ -43,7 +42,6 @@ internal class UpdateQuestionScreen
             context.Questions.Update(question);
             context.SaveChanges();
 
-            Console.WriteLine("Questão atualizada com sucesso!");
             Console.WriteLine("Você deseja apagar todas as respostas dessa questão?");
             Console.WriteLine("(1) - Sim, desejo apagar todas as respostas.");
             Console.WriteLine("(0) - Não, desejo voltar ao menu.");
@@ -53,18 +51,20 @@ internal class UpdateQuestionScreen
             switch (option)
             {
                 case 0:
-                    MenuCategoryScreen.Load();
+                    Console.WriteLine("Questão atualizada com sucesso!");
                     break;
                 case 1:
+                    Console.WriteLine("Questão atualizada com sucesso!");
                     DeleteAnswerScreen.DeleteAllAnswers(question, context);
-                    Console.WriteLine("Questões apagadas com sucesso.");
-                    Console.ReadKey();
+                    Console.WriteLine("Respostas apagadas com sucesso.");
                     break;
                 default:
                     Console.WriteLine("Opção inválida. Voltando ao menu.");
-                    MenuCategoryScreen.Load();
                     break;
             }
+            Console.WriteLine("Pressione qualquer tecla para retornar ao menu.");
+            Console.ReadKey();
+            MenuCategoryScreen.Load(context);
         }
         catch (Exception ex)
         {

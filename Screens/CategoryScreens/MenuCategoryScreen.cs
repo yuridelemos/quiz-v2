@@ -1,8 +1,10 @@
-﻿namespace quiz_v2.Screens.CategoryScreens;
+﻿using quiz_v2.Data;
+
+namespace quiz_v2.Screens.CategoryScreens;
 
 internal class MenuCategoryScreen
 {
-    internal static void Load()
+    internal static void Load(QuizDataContext context)
     {
         Console.Clear();
         Console.WriteLine("Gestão de cartegorias");
@@ -21,24 +23,24 @@ internal class MenuCategoryScreen
         switch (option)
         {
             case 1:
-                ListCategoryScreen.Load();
+                ListCategoryScreen.Load(context);
                 break;
             case 2:
-                CreateCategoryScreen.Load();
+                CreateCategoryScreen.Load(context);
                 break;
             case 3:
-                UpdateCategoryScreen.Load();
+                UpdateCategoryScreen.Load(context);
                 break;
             case 4:
-                DeleteCategoryScreen.Load();
+                DeleteCategoryScreen.Load(context);
                 break;
             case 0:
-                MainMenu.Load();
+                MainMenu.Load(context);
                 break;
             default:
                 Console.WriteLine("Opção digitada inválida, pressione qualquer tecla para retornar ao menu.");
                 Console.ReadKey();
-                Load();
+                Load(context);
                 break;
         }
     }

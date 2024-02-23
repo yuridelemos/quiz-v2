@@ -1,28 +1,26 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using quiz_v2.Data;
-using quiz_v2.Screens.QuestionScreens;
 
 namespace quiz_v2.Screens.AnswerScreens;
 
 internal class ListAnswerScreen
 {
-    public static void Load()
+    public static void Load(QuizDataContext context)
     {
         Console.Clear();
         Console.WriteLine("Gestão de questões");
         Console.WriteLine("--------------");
-        ListForEdit();
+        ListForEdit(context);
         Console.WriteLine();
         Console.WriteLine("Pressione qualquer tecla para retornar ao menu.");
         Console.ReadKey();
-        MenuQuestionScreen.Load();
+        MenuAnswerScreen.Load(context);
     }
 
-    internal static void ListForEdit()
+    internal static void ListForEdit(QuizDataContext context)
     {
         try
         {
-            using var context = new QuizDataContext();
             var answers = context.Answers
                 .AsNoTracking()
                 .ToList();

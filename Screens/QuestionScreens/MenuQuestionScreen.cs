@@ -1,8 +1,10 @@
-﻿namespace quiz_v2.Screens.QuestionScreens;
+﻿using quiz_v2.Data;
+
+namespace quiz_v2.Screens.QuestionScreens;
 
 public class MenuQuestionScreen
 {
-    public static void Load()
+    public static void Load(QuizDataContext context)
     {
         Console.Clear();
         Console.WriteLine("Gestão de questões");
@@ -16,30 +18,29 @@ public class MenuQuestionScreen
         Console.WriteLine("(0) - Voltar");
         Console.Write("----------------: ");
 
-
         var option = short.Parse(Console.ReadLine());
 
         switch (option)
         {
             case 1:
-                ListQuestionScreen.ListForEdit();
+                ListQuestionScreen.Load(context);
                 break;
             case 2:
-                CreateQuestionScreen.Load();
+                CreateQuestionScreen.Load(context);
                 break;
             case 3:
-                UpdateQuestionScreen.Load();
+                UpdateQuestionScreen.Load(context);
                 break;
             case 4:
-                DeleteQuestionScreen.Load();
+                DeleteQuestionScreen.Load(context);
                 break;
             case 0:
-                MainMenu.Load();
+                MainMenu.Load(context);
                 break;
             default:
                 Console.WriteLine("Opção digitada inválida, pressione qualquer tecla para retornar ao menu.");
                 Console.ReadKey();
-                Load();
+                Load(context);
                 break;
         }
     }

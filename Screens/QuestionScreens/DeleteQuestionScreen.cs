@@ -6,7 +6,7 @@ namespace quiz_v2.Screens.QuestionScreens;
 
 internal class DeleteQuestionScreen
 {
-    internal static void Load()
+    internal static void Load(QuizDataContext context)
     {
         Console.WriteLine("-----DELETAR QUESTÃO-----");
         Console.WriteLine("(1) - Deletar questão");
@@ -15,7 +15,7 @@ internal class DeleteQuestionScreen
         var option = int.Parse(Console.ReadLine());
         Console.WriteLine("OBS: Ao deletar uma questão, todas as respostas presentes nela também serão deletadas.");
         if (option == 0)
-            MenuQuestionScreen.Load();
+            MenuQuestionScreen.Load(context);
         Console.Clear();
         Console.WriteLine("-----DELETAR QUESTÃO-----");
         Console.WriteLine("-------------");
@@ -29,40 +29,43 @@ internal class DeleteQuestionScreen
         switch (option)
         {
             case 0:
-                MenuQuestionScreen.Load();
+                MenuQuestionScreen.Load(context);
                 break;
             case 1:
                 Console.WriteLine("Lista de categorias");
                 Console.WriteLine("--------------");
-                ListCategoryScreen.ListForEdit();
+                ListCategoryScreen.ListForEdit(context);
                 Console.Write("ID: ");
                 id = short.Parse(Console.ReadLine());
-                emptyList = ListQuestionScreen.List(id);
+                emptyList = ListQuestionScreen.List(id, context);
                 break;
             case 2:
-                ListQuestionScreen.ListForEdit();
+                ListQuestionScreen.ListForEdit(context);
                 break;
             default:
                 Console.WriteLine("Opção inválida. Por favor tente novamente");
+                Console.WriteLine("Pressione qualquer tecla para retornar ao menu.");
+                Console.ReadKey();
+                DeleteQuestionScreen.Load(context);
                 break;
         }
         if (emptyList)
         {
             Console.Write("ID: ");
             id = short.Parse(Console.ReadLine());
-            Delete(id);
+            Delete(id, context);
         }
         else
         {
             Console.WriteLine("Categoria não possui questões.");
             Console.WriteLine("Pressione qualquer tecla para retornar.");
             Console.ReadKey();
-            Load();
+            Load(context);
         }
     }
 
 
-    private static void Delete(short id)
+    private static void Delete(short id, QuizDataContext context)
     {
         try
         {
@@ -71,19 +74,18 @@ internal class DeleteQuestionScreen
             var option = Console.ReadLine();
             if (option.ToUpper() == "S")
             {
-                using var context = new QuizDataContext();
                 var question = context.Questions
                     .FirstOrDefault(x => x.Id == id);
                 context.Questions.Remove(question);
                 context.SaveChanges();
                 Console.WriteLine("Questão deletada com sucesso!");
                 Thread.Sleep(2000);
-                Load();
+                Load(context);
             }
             else
             {
                 Console.WriteLine("Opção inválida. Por favor tente novamente.");
-                Delete(id);
+                Delete(id, context);
             }
         }
         catch (Exception ex)

@@ -6,7 +6,7 @@ namespace quiz_v2.Screens.CategoryScreens;
 
 internal class CreateCategoryScreen
 {
-    internal static void Load()
+    internal static void Load(QuizDataContext context)
     {
         Console.WriteLine("-----CRIAÇÃO DE CATEGORIA-----");
         Console.WriteLine("(1) - Criar categoria");
@@ -14,17 +14,16 @@ internal class CreateCategoryScreen
         Console.Write("-------------: ");
         var option = int.Parse(Console.ReadLine());
         if (option == 0)
-            MenuCategoryScreen.Load();
+            MenuCategoryScreen.Load(context);
         Console.Clear();
         Console.WriteLine("Nova categoria");
         Console.WriteLine("-------------");
         Console.Write("Nome: ");
         var matter = Console.ReadLine();
-        Create(matter);
+        Create(matter, context);
     }
-    private static void Create(string matter)
+    private static void Create(string matter, QuizDataContext context)
     {
-        using var context = new QuizDataContext();
         CheckDuplicity(context, matter);
         try
         {
@@ -38,7 +37,7 @@ internal class CreateCategoryScreen
             Console.WriteLine("Categoria cadastrada com sucesso!");
             Console.WriteLine("Pressione qualquer tecla para retornar ao menu.");
             Console.ReadKey();
-            MenuCategoryScreen.Load();
+            MenuCategoryScreen.Load(context);
         }
         catch (Exception ex)
         {
@@ -58,7 +57,7 @@ internal class CreateCategoryScreen
                 Console.WriteLine("Não foi possível efetuar o cadastrar, matéria já cadastrada.");
                 Console.WriteLine("Presione qualquer tecla para tentar novamente.");
                 Console.ReadKey();
-                Load();
+                Load(context);
             }
         }
     }

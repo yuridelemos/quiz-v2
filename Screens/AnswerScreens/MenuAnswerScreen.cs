@@ -1,8 +1,10 @@
-﻿namespace quiz_v2.Screens.AnswerScreens;
+﻿using quiz_v2.Data;
+
+namespace quiz_v2.Screens.AnswerScreens;
 
 public class MenuAnswerScreen
 {
-    public static void Load()
+    public static void Load(QuizDataContext context)
     {
         Console.Clear();
         Console.WriteLine("Gestão de respostas");
@@ -19,18 +21,18 @@ public class MenuAnswerScreen
         switch (option)
         {
             case 1:
-                ListAnswerScreen.Load();
+                ListAnswerScreen.Load(context);
                 break;
             case 2:
-                UpdateAnswerScreen.Load();
+                UpdateAnswerScreen.Load(context);
                 break;
             case 0:
-                MainMenu.Load();
+                MainMenu.Load(context);
                 break;
             default:
                 Console.WriteLine("Opção digitada inválida, pressione qualquer tecla para retornar ao menu.");
                 Console.ReadKey();
-                Load();
+                Load(context);
                 break;
         }
     }

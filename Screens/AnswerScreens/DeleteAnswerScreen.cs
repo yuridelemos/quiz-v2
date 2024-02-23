@@ -3,9 +3,9 @@ using quiz_v2.Models;
 
 namespace quiz_v2.Screens.AnswerScreens;
 
-internal class DeleteAnswerScreen
+internal class DeleteAnswerScreen : GenericCRUD<Answer>
 {
-    internal static void DeleteAllAnswers(Question question, QuizDataContext context)
+    internal static void DeleteAll(Question question, QuizDataContext context)
     {
         try
         {

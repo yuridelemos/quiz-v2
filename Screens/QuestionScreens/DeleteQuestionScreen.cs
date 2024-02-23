@@ -4,7 +4,7 @@ using quiz_v2.Screens.CategoryScreens;
 
 namespace quiz_v2.Screens.QuestionScreens;
 
-internal class DeleteQuestionScreen
+internal class DeleteQuestionScreen : GenericCRUD<Question>
 {
     internal static void Load(QuizDataContext context)
     {
@@ -14,7 +14,7 @@ internal class DeleteQuestionScreen
         Console.Write("-------------: ");
         var option = int.Parse(Console.ReadLine());
         Console.WriteLine("OBS: Ao deletar uma questão, todas as respostas presentes nela também serão deletadas.");
-        if (option == 0)
+        if (option == 0 || option != 1)
             MenuQuestionScreen.Load(context);
         Console.Clear();
         Console.WriteLine("-----DELETAR QUESTÃO-----");
@@ -95,16 +95,11 @@ internal class DeleteQuestionScreen
         }
 
     }
-    internal static void DeleteAllQuestions(Category category, QuizDataContext context)
+    internal static void DeleteAll(Category category, QuizDataContext context)
     {
         try
         {
-            var questions = context.Questions
-                            .Where(x => x.Category.Id == category.Id)
-                            .ToList();
-            foreach (var question in questions)
-                context.Questions.Remove(question);
-            context.SaveChanges();
+            new DeleteQuestionScreen().DeleteAll<Question>(context, x => x.Category.Id == category.Id);
         }
         catch (Exception ex)
         {

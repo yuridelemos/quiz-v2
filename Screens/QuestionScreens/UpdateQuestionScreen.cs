@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using quiz_v2.Data;
 using quiz_v2.Screens.AnswerScreens;
-using quiz_v2.Screens.CategoryScreens;
 
 namespace quiz_v2.Screens.QuestionScreens;
 
@@ -14,7 +13,7 @@ internal class UpdateQuestionScreen
         Console.WriteLine("(0) - Voltar");
         Console.Write("----------------: ");
         var option = short.Parse(Console.ReadLine());
-        if (option == 0)
+        if (option == 0 || option != 1)
             MenuQuestionScreen.Load(context);
         Console.Clear();
         Console.WriteLine("Atualizar questão");
@@ -55,7 +54,7 @@ internal class UpdateQuestionScreen
                     break;
                 case 1:
                     Console.WriteLine("Questão atualizada com sucesso!");
-                    DeleteAnswerScreen.DeleteAllAnswers(question, context);
+                    DeleteAnswerScreen.DeleteAll(question, context);
                     Console.WriteLine("Respostas apagadas com sucesso.");
                     break;
                 default:
@@ -64,7 +63,7 @@ internal class UpdateQuestionScreen
             }
             Console.WriteLine("Pressione qualquer tecla para retornar ao menu.");
             Console.ReadKey();
-            MenuCategoryScreen.Load(context);
+            MenuQuestionScreen.Load(context);
         }
         catch (Exception ex)
         {

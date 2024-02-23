@@ -14,7 +14,7 @@ public class MenuAnswerScreen
         Console.WriteLine("(1) - Listar respostas");
         Console.WriteLine("(2) - Atualizar respostas");
         Console.WriteLine("(0) - Voltar");
-        Console.WriteLine();
+        Console.Write("----------------: ");
 
         var option = short.Parse(Console.ReadLine());
 

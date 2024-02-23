@@ -12,7 +12,7 @@ internal class DeleteCategoryScreen
         Console.Write("-------------: ");
         var option = short.Parse(Console.ReadLine());
         Console.WriteLine("OBS: Ao deletar uma categoria, todas as questões e respostas presentes nela também serão deletadas.");
-        if (option == 0)
+        if (option == 0 || option != 1)
             MenuCategoryScreen.Load(context);
         Console.Clear();
         Console.WriteLine("Deletar categoria");

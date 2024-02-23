@@ -14,15 +14,15 @@ internal class CreateQuestionScreen
         Console.WriteLine("(1) - Criar questão");
         Console.WriteLine("(0) - Voltar");
         Console.Write("-------------: ");
-        var option = int.Parse(Console.ReadLine());
-        if (option == 0)
+        var option = short.Parse(Console.ReadLine());
+        if (option == 0 || option != 1)
             MenuQuestionScreen.Load(context);
         Console.Clear();
         Console.WriteLine("Nova questão");
         Console.WriteLine("-------------");
         Console.WriteLine("Ao criar uma nova questão, será obrigado logo em seguida a colocação das 5 alternativas de respostas.");
         Console.WriteLine("A primeia resposta será automaticamente considerada a verdadeira, então cuidado! Mas não se preocupe, no quiz elas terão ordens embaralhadas.");
-        ListCategoryScreen.Load(context);
+        ListCategoryScreen.ListForEdit(context);
         Create(context);
     }
     private static void Create(QuizDataContext context)

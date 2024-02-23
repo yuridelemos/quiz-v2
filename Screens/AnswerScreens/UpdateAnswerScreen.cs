@@ -11,7 +11,7 @@ internal class UpdateAnswerScreen
         Console.WriteLine("(0) - Voltar");
         Console.Write("----------------: ");
         var option = short.Parse(Console.ReadLine());
-        if (option == 0)
+        if (option == 0 || option != 1)
             MenuAnswerScreen.Load(context);
         Console.Clear();
         Console.WriteLine("Atualizar resposta");

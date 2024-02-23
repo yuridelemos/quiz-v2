@@ -15,7 +15,7 @@ internal class UpdateCategoryScreen
         Console.WriteLine("(0) - Voltar");
         Console.Write("----------------: ");
         var option = short.Parse(Console.ReadLine());
-        if (option == 0)
+        if (option == 0 || option != 1)
             MenuCategoryScreen.Load(context);
         Console.Clear();
         Console.WriteLine("Atualizar categoria");
@@ -63,7 +63,7 @@ internal class UpdateCategoryScreen
                     break;
                 case 1:
                     Console.WriteLine("Categoria atualizada com sucesso!");
-                    DeleteQuestionScreen.DeleteAllQuestions(category, context);
+                    DeleteQuestionScreen.DeleteAll(category, context);
                     Console.WriteLine("Questões apagadas com sucesso.");
                     break;
                 default:

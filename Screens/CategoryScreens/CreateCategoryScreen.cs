@@ -13,7 +13,7 @@ internal class CreateCategoryScreen
         Console.WriteLine("(0) - Voltar");
         Console.Write("-------------: ");
         var option = int.Parse(Console.ReadLine());
-        if (option == 0)
+        if (option == 0 || option != 1)
             MenuCategoryScreen.Load(context);
         Console.Clear();
         Console.WriteLine("Nova categoria");
